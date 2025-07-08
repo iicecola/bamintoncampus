@@ -1,0 +1,502 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .home-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .home-container::before {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    /* 决定home-main的高度 */
+    .home-main {
+        position: relative;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 500px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* 左部边栏 */
+    .left-aside {
+        position: absolute;
+        top: 0;
+        left: 150px;
+        width: 230px;
+        border: 1px solid #eee;
+        border-bottom: none;
+        border-right: none;
+    }
+
+    .left-aside-item {
+        display: block;
+        width: 100%;
+        height: 110px;
+        padding: 29px;
+        border-bottom: 1px solid #eee;
+        border-right: 1px solid #eee;
+        color: rgb(49, 49, 49);
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .left-aside-item-subtitle {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #838383
+    }
+
+    .left-aside-font-acitve:hover {
+        border-right: none;
+        color: skyblue;
+    }
+
+    .left-aside-item-content {
+        position: absolute;
+        top:0;
+        left: 229.5px;
+        width: 230px;
+        height: 440px;
+        border: 1px solid #eee;
+        border-left: none;
+        background-color: #fff;
+        z-index: 999;
+    }
+
+    /* 中间轮播图 */
+    .carousel-container {
+        position: absolute;
+        top: 10px;
+        left: 400px;
+        width: 690px;
+        height: 430px;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .carousel-img {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+
+    .carousel-btn {
+        width: 45px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 20px;
+        color: #b8b8b8;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+
+    .carousel-btn:hover {
+        color: rgb(218, 218, 218);
+        background-color: rgba(0, 179, 255, 0.663);
+    }
+
+    .carousel-btn:active {
+        color: rgb(218, 218, 218);
+        background-color: rgba(0, 97, 138, 0.663);
+    }
+
+    .carousel-btn-left {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-radius: 0 15px 15px 0;
+        transform: translate(0,-50%);
+    }
+
+    .carousel-btn-right {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        border-radius: 15px 0 0 15px;
+        transform: translate(-100%,-50%);
+    }
+
+    /* 轮播图按钮的出现和消失，使用vue的过度实现 */
+    /* 左按钮 */
+    .left-btn-enter , .left-btn-leave-to {
+        opacity: 0;
+        transform: translate(-100%,-50%);
+    }
+
+    .left-btn-enter-active , .left-btn-leave-active {
+        transition: all 0.2s linear;
+    }
+
+    .left-btn-enter-to , .left-btn-leave {
+        opacity: 1;
+        transform: translate(0,-50%);
+    }
+    /* 右按钮 */
+    .right-btn-enter , .right-btn-leave-to {
+        opacity: 0;
+        transform: translate(100%,-50%);
+    }
+
+    .right-btn-enter-active , .right-btn-leave-active {
+        transition: all 0.2s linear;
+    }
+
+    .right-btn-enter-to , .right-btn-leave {
+        opacity: 1;
+        transform: translate(-100%,-50%);
+    }
+
+    /* 底部小圆点 */
+    .carousel-bottom {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 20px;
+        z-index: 999;
+    }
+
+    .carousel-list-dots {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /* 通过伪类更改小圆点 */
+
+    .carousel-dot {
+        position: relative;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .carousel-dot::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, .4);
+    }
+
+    .carousel-dot-active {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: white
+    }
+
+    /* 头部右边栏 */
+
+    .right-aside {
+        position: absolute;
+        top: 0;
+        left: 1110px;
+    }
+
+    /* 右边栏列表 */
+
+    .right-aside-list-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 256px;
+        height: 240px;
+        border-radius: 11px;
+        background-color: #eee;
+    }
+    
+    .right-aside-list-title {
+        position: relative;
+        top: 12px;
+        left: 15px;
+        width: 230px;
+        border: 1px solid #eee;
+        border-radius: 17px;
+        color: white;
+        font-weight: 600;
+        background: -webkit-linear-gradient(left,#fe6b02,#fda664);
+    }
+
+
+    .right-aside-list {
+        position: relative;
+        top: 27px;
+        left: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: baseline;
+        width: 200px;
+    }
+
+    .right-aside-item {
+        position: relative;
+        width: 70px;
+        height: 100px;
+        text-align: center;
+    }
+
+    .right-aside-item:hover {
+        color: rgb(154, 154, 154);
+    }
+
+    .right-aside-item-font {
+        position: absolute;
+        top: -7px;
+        right: -4px;
+    }
+
+    .right-reservation-container {
+        position: relative;
+        width: 260px;
+        height: 80px;
+    }
+
+    .right-aside-reservation {
+        position: relative;
+        top: 8px;
+        left: 10px;
+        display: inline-block;
+        width: 150px;
+        height: 75px;
+        border: 1px solid #666666;
+        border-radius: 10px;
+        background: -webkit-linear-gradient(left top,rgb(0, 0, 0),rgb(120, 120, 120));
+        cursor: pointer;
+    }
+
+    .right-aside-myreservation {
+        position: relative;
+        top: 8px;
+        left: 40px;
+        display: inline-block;
+        width: 60px;
+        height: 75px;
+        color: white;
+        border-radius: 10px;
+        background-color: rgb(13, 153, 229);
+        cursor: pointer;
+    }
+
+    .right-aside-myreservation:hover {
+        background-color: rgb(87, 196, 255);
+    }
+
+
+
+
+    .home-body {
+        position: relative;
+        top: 0;
+        left: 150px;
+        width: 82.8%;
+        height: 1600px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .body-news {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 420px;
+        margin-bottom: 100px;
+        font-weight: 600;
+        border: 1px solid #eee;
+        border-radius: 0 0 7px 7px;
+    }
+
+    .body-title {
+        width: 1219px;
+        height: 25px;
+        line-height: 25px;
+        color: white;
+        background-color: skyblue;
+    }
+
+    .body-news-content {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .body-news-content ul li img {
+        border-radius: 5px;
+    }
+
+    .body-news-level {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    .body-news-daiyan {
+        position: absolute;
+        top: 20px;
+        left: 560px;
+        width: 300px;
+    }
+
+    .body-news-80light {
+        position: absolute;
+        top: 210px;
+        left: 560px;
+        width: 300px;
+    }
+
+    .body-news-subei {
+        position: absolute;
+        top: 20px;
+        left: 900px;
+        width: 300px;
+    }
+
+    .body-campus {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .body-campus-container {
+        position: relative;
+        display: flex;
+    }
+
+    /* 社区世界排名 */
+    .campus-ranking {
+        position:relative;
+        top: 10px;
+        overflow: hidden;
+    }
+
+    .campus-ranking table tbody tr {
+        display: block;
+        height: 60px;
+        border-bottom: #e6e6e6 0.4px solid;
+    }
+
+    .player-country {
+        unicode-bidi: isolate;
+        text-align: center;
+    }
+
+    .face {
+        overflow-clip-margin: content-box;
+        overflow: clip;
+        float: left;
+        width: 40px;
+        margin: 2px 0 0 30px;
+        border-radius: 50%;
+    }
+
+    /* 排名下面广告 */
+    .campus-ad {
+        position: relative;
+        padding: 17px 0 0 40px
+    }
+    .campus-ad-off {
+        width: 36px;
+        height: 20px;
+        position: absolute;
+        top: 17px;
+        right: 28px;
+        font-size: 12px;
+        color: white;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 999;
+        cursor: pointer;
+    }
+    .ad-leave {
+        transform: translateX(0);
+    }
+    .ad-leave-active {
+        transition: 0.4s ease-in;
+    }
+    .ad-leave-to {
+        transform: translateX(-350px);
+    }
+
+
+    .campus-dynamics {
+        margin: 20px 20px 0 60px;
+    }
+
+    .campus-dynamics ul li a {
+        display: flex;
+        margin-bottom: 17px;
+        width: 700px;
+    }
+
+    .campus-dynamics ul li img {
+        vertical-align: center;
+    }
+
+    .campus-dynamics-item {
+        width: 500px;
+    }
+
+    .campus-dynamics-item h3 {
+        color: #256EB1;
+    }
+
+    .campus-dynamics-item h3:hover {
+        color: rgb(254, 89, 119);
+        text-decoration: underline;
+    }
+
+    /* 资讯主体内容字体 */
+    .intro {
+        color: #776955;
+        font-size: 14px;
+    }
+
+    .zan {
+        width: 13px;
+        height: 13px;
+        margin: -3px 3px 0 0;
+        vertical-align: middle;
+    }
+
+    .cai {
+        width: 13px;
+        height: 13px;
+        margin: -1px 3px 0 0;
+        vertical-align: middle;
+    }
+
+    .comm {
+        width: 15px;
+        height: 15px;
+        margin: -1px 3px 0 0;
+        vertical-align: middle;
+    }
